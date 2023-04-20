@@ -1,0 +1,167 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-size: 18px;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+    gap: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+    font-size: 50px;
+}
+
+#outline {
+    width: 360px;
+    height: 525px;
+    border: 2px solid black;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+    gap: 15px;
+    background-color: rgb(114, 114, 114);
+}
+
+#display {
+    width: 340px;
+    height: 80px;
+    border: 1px solid black;
+    border-radius: 25px;
+    background-color: rgb(237, 234, 234);
+}
+
+#clear {
+    grid-area: clear;
+    width: 75px;
+    height: 75px;
+    background-color: green;
+}
+
+#delete {
+    grid-area: delete;
+    width: 75px;
+    height: 75px;
+    background-color: red;
+}
+
+#absolute {
+    grid-area: absolute;
+}
+
+#divide {
+    grid-area: divide;
+}
+
+#seven {
+    grid-area: seven;
+}
+
+#eight {
+    grid-area: eight;
+}
+
+#nine {
+    grid-area: nine;
+}
+
+#multiply {
+    grid-area: multiply;
+}
+
+#four {
+    grid-area: four;
+}
+
+#five {
+    grid-area: five;
+}
+
+#six {
+    grid-area: six;
+}
+
+#add {
+    grid-area: add;
+}
+
+#one {
+    grid-area: one;
+}
+
+#two {
+    grid-area: two;
+}
+
+#three {
+    grid-area: three;
+}
+
+#subtract {
+    grid-area: subtract;
+}
+
+#decimal {
+    grid-area: decimal;
+}
+
+#zero {
+    grid-area: zero;
+}
+
+#equals {
+    grid-area: equals;
+    width: 160px;
+    height: 75px;
+    background-color: orange;
+    color: white;
+}
+
+.numbers {
+    width: 75px;
+    height: 75px;
+    background-color: rgb(58, 58, 58);
+    color: white;
+}
+
+#add, #subtract, #multiply, #divide {
+    width: 75px;
+    height: 75px;
+    background-color: orange;
+    color: white;
+}
+
+#decimal, #absolute {
+    width: 75px;
+    height: 75px;
+    background-color: rgb(175, 182, 188);
+    color: black;
+}
+
+#buttons {
+    width: 340px;
+    height: 400px;
+    padding-left: 10px;
+    padding-top: 5px;
+    display: grid;
+    grid-template-areas: 
+        "clear delete absolute divide"
+        "seven eight nine multiply"
+        "four five six add"
+        "one two three subtract"
+        "decimal zero equals equals";
+    grid-template-columns: repeat(4, auto);
+
+}
+
+button {
+    border-radius: 100px;
+    border: 1px solid black;
+}
