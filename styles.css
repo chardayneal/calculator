@@ -36,6 +36,14 @@ h1 {
     border: 1px solid black;
     border-radius: 25px;
     background-color: rgb(237, 234, 234);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+#screen {
+    font-size: 32px;
+    padding: 20px;
 }
 
 #clear {
