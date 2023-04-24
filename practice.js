@@ -33,16 +33,14 @@ const screen = document.querySelector('#screen');
 let numString = '';
 let operand; 
 function displayNumber() {
-    if (Number(numString) == operand || firstNum == Number(screen.textContent)) {
+    if (Number(numString) == operand || firstNum == Number(screen.textContent) || screen.textContent == 'NaN') {
         screen.textContent = '';
         numString = '';
         screen.append(this.textContent);
         numString += this.textContent;
-        console.log(numString);
     } else {
         screen.append(this.textContent);
-        numString += this.textContent;
-        console.log(numString);
+        numString += this.textContent;   
     }
 }
 
@@ -54,10 +52,13 @@ opButtons.forEach((operator) => {
         if (screen.textContent == '') {
             screen.textContent = 'ERROR';
         } else {
-            if (firstNum == undefined || Number(screen.textContent) == firstNum) {
-                firstNum = Number(screen.textContent);
+            if (firstNum == undefined || Number(screen.textContent) == solution) {
+                firstNum = Number(numString);
+                console.log(firstNum);
+                
             } else {
                 secondNum = Number(numString);
+                console.log(secondNum);
             }
         }
         if (operatorSelected == undefined) {
@@ -68,6 +69,7 @@ opButtons.forEach((operator) => {
             firstNum = Number(screen.textContent);  
         }
         operand = Number(numString);
+        console.log(operand);
         operatorSelected = operator.id;
         console.log(operatorSelected)
         operator.style.backgroundColor = 'rgb(191, 124, 0)';
@@ -80,11 +82,28 @@ equals.addEventListener('click', () => {
     opButtons.forEach((operator) => {
         operator.style.backgroundColor = 'orange';
     });
-    secondNum = Number(numString);
+    secondNum = Number(screen.textContent);
+    console.log(operand);
     console.log(secondNum);
     console.log('equals');
-    operate(operatorSelected, firstNum, secondNum);
-   // solution = Number(screen.textContent);
+    operate(operatorSelected, operand, secondNum);
+    solution = Number(screen.textContent);
     firstNum = Number(screen.textContent);
-  //  console.log(firstNum);
+    console.log(firstNum);
+});
+
+
+// A B S O L U T E   S I G N   C L I C K E D ?
+const abSign = document.getElementById('absolute');
+abSign.addEventListener('click', () => {
+    if (screen.textContent == '') {
+        screen.textContent = 'ERROR';
+    } else if (Number(screen.textContent) == Math.abs(Number(screen.textContent))) {
+        screen.textContent = '-' + screen.textContent;
+        numString = '-' + numString;
+    } else {
+        numString = screen.textContent;
+        screen.textContent = numString.slice(1);
+        numString = screen.textContent;
+    }
 });
