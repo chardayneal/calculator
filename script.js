@@ -13,11 +13,8 @@ const divide = function(a, b) {return a / b};
 const operate = function(operator, a, b) {
     switch (operator) {
         case 'add': return screen.textContent = add(a, b);
-
         case 'subtract': return screen.textContent = subtract(a, b);
-
         case 'multiply': return screen.textContent = multiply(a, b);
-
         case 'divide': return screen.textContent = divide(a, b);
     }
 }
@@ -26,12 +23,10 @@ const operate = function(operator, a, b) {
 const numButtons = document.querySelectorAll('.numbers');
 const screen = document.getElementById('screen');
 const equation = document.getElementById('equation');
-
+let numString = '';
 numButtons.forEach((number) => {
     number.addEventListener('click', displayNumber);
 });
-
-let numString = '';
 function displayNumber() {
     numString += this.textContent;
     screen.textContent = numString;
@@ -39,7 +34,6 @@ function displayNumber() {
 
 // O P E R A T O R   C L I C K E D ?
 const opButtons = document.querySelectorAll('.operators');
-const operatorList = Array.from(opButtons);
 opButtons.forEach((operator) => {
     operator.addEventListener('click', () => {
         // check if any operators are currently selected
@@ -54,8 +48,6 @@ opButtons.forEach((operator) => {
                 console.log(firstNum);
                 equation.textContent = `${firstNum} ${operator.textContent} `;
                 button.style.backgroundColor = 'orange';
-                screen.textContent = '';
-                numString = '';
             }
         });
         if (equation.textContent == '') {
@@ -65,12 +57,12 @@ opButtons.forEach((operator) => {
             console.log(firstNum);
             console.log(operatorSelected);
             operator.style.backgroundColor = 'rgb(191, 124, 0)';
-            equation.append(`${firstNum} ${operator.textContent} `);
-            screen.textContent = '';
-            numString = '';
+            equation.append(`${screen.textContent} ${operator.textContent} `);
         } 
         operator.style.backgroundColor = 'rgb(191, 124, 0)';
         operatorSelected = operator.id; 
+        screen.textContent = '';
+        numString = '';
     });
 });
 
@@ -82,8 +74,10 @@ equals.addEventListener('click', () => {
             button.style.backgroundColor = 'orange';
         }
     })
+    shortenNumber();
     secondNum = Number(screen.textContent);
     operate(operatorSelected, firstNum, secondNum);
+    shortenNumber();
     equation.textContent = '';
     numString = ''
 });
@@ -146,10 +140,10 @@ let maxNumber = 999999999999;
 let minNumber = -999999999999
 function shortenNumber() {
     if (Number(screen.textContent) > maxNumber || Number(screen.textContent) < minNumber) {
-       screen.textContent =  `${Number(screen.textContent).toExponential(12)}`;
+       screen.textContent =  `${Number(screen.textContent).toExponential(5)}`;
        numString = screen.textContent;
     } else if (screen.textContent.includes('.') && screen.textContent.length > 13) {
-        screen.textContent =  `${Number(screen.textContent).toExponential(12)}`;
+        screen.textContent =  `${Number(screen.textContent).toExponential(5)}`;
         numString = screen.textContent;
     }
 }
