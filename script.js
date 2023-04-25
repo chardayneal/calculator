@@ -12,104 +12,89 @@ const divide = function(a, b) {return a / b};
 //  O P E R A T E   F U N C T I O N
 const operate = function(operator, a, b) {
     switch (operator) {
-        case 'add': return screenDisplay.textContent = add(a, b);
+        case 'add': return screen.textContent = add(a, b);
 
-        case 'subtract': return screenDisplay.textContent = subtract(a, b);
+        case 'subtract': return screen.textContent = subtract(a, b);
 
-        case 'multiply': return screenDisplay.textContent = multiply(a, b);
+        case 'multiply': return screen.textContent = multiply(a, b);
 
-        case 'divide': return screenDisplay.textContent = divide(a, b);
+        case 'divide': return screen.textContent = divide(a, b);
     }
 }
 
-const operators = document.querySelectorAll('.operators');
-const screenDisplay = document.querySelector('#screen');
-const numbers = document.querySelectorAll('.numbers');
+// N U M B E R   C L I C K E D ?
+const numButtons = document.querySelectorAll('.numbers');
+const screen = document.getElementById('screen');
+const equation = document.getElementById('equation');
 
-function getFirstNumber() {
-    addNumClicks();
+numButtons.forEach((number) => {
+    number.addEventListener('click', displayNumber);
+});
 
-    operators.forEach((operator) => {
-        operator.addEventListener('click', () => {
-            removeNumClicks();
-            if (screenDisplay.textContent == '') {
-                screenDisplay.textContent = 'ERROR';
-            } else {
-                operator.style.cssText = 'background-color: rgb(191, 124, 0)';
-                firstNum = Number(screenDisplay.textContent);
-                operatorSelected = `${operator.id}`;
-                console.log(`First Number: ${firstNum}`);
-                console.log(`Operator: ${operatorSelected}`);
-                getSecondNumber();
+let numString = '';
+function displayNumber() {
+    numString += this.textContent;
+    screen.textContent = numString;
+}
+
+// O P E R A T O R   C L I C K E D ?
+const opButtons = document.querySelectorAll('.operators');
+const operatorList = Array.from(opButtons);
+opButtons.forEach((operator) => {
+    operator.addEventListener('click', () => {
+        // check if any operators are currently selected
+        opButtons.forEach(button => {
+            if (button.style.backgroundColor == 'rgb(191, 124, 0)') {
+                secondNum = Number(screen.textContent);
+                console.log(secondNum);
+                operate(operatorSelected, firstNum, secondNum);
+                firstNum = Number(screen.textContent);
+                console.log(firstNum);
+                equation.textContent = `${firstNum} ${operator.textContent} `;
+                button.style.backgroundColor = 'orange';
+                numString = '';
             }
         });
+        if (equation.textContent == '') {
+            firstNum = Number(screen.textContent);
+            operatorSelected = operator.id;
+            console.log(firstNum);
+            console.log(operatorSelected);
+            operator.style.backgroundColor = 'rgb(191, 124, 0)';
+            equation.append(`${firstNum} ${operator.textContent} `);
+            numString = '';
+        } 
+        operator.style.backgroundColor = 'rgb(191, 124, 0)';
+        operatorSelected = operator.id; 
     });
-}
+});
 
-function getSecondNumber() {
-    numbers.forEach((number) => {
-        number.addEventListener('click', () => {
-            operators.forEach((operator) => {
-                if (operator.style.backgroundColor == 'rgb(191, 124, 0)') {
-                    screenDisplay.textContent = '';
-                    operator.style.backgroundColor = 'orange';
-                }
-            });
-            screenDisplay.append(number.textContent);
-        });
-    });
+// E Q U A L   S I G N   C L I C K E D ?
+const equals = document.getElementById('equals');
+equals.addEventListener('click', () => {
+    opButtons.forEach((button) => {
+        if (button.style.backgroundColor = 'rgb(191, 124, 0)') {
+            button.style.backgroundColor = 'orange';
+        }
+    })
+    secondNum = Number(screen.textContent);
+    operate(operatorSelected, firstNum, secondNum);
+    equation.textContent = '';
+    numString = ''
+});
 
-    operators.forEach(operator => {
-        operator.addEventListener('click', () => {
-            removeNumClicks();
-            operators.forEach(button => {
-                if (button.style.backgroundColor == 'rgb(191, 124, 0)') {
-                    secondNum = Number(screenDisplay.textContent);
-                    operate(operatorSelected, firstNum, secondNum);
-                    firstNum = Number(screenDisplay.textContent);
-                    operator.style.backgroundColor = 'rgb(191, 124, 0)';
-                    operatorSelected = `${operator.id}`;
-                    getSecondNumber();
-                }
-            });
-        });
-    });
-
-    const equal = document.querySelector('#equals');
-    equal.addEventListener('click', () => {
-        secondNum = Number(screenDisplay.textContent);
-        console.log(`Second Number: ${secondNum}`);
-        operate(operatorSelected, firstNum, secondNum);
-    });
-}
-
-getFirstNumber();
-
-function addNumClicks() {
-    numbers.forEach((number) => {
-        number.addEventListener('click', () => {
-            if (screenDisplay.textContent == 'ERROR') {
-                screenDisplay.textContent = number.textContent;
-            } else {
-                screenDisplay.append(number.textContent);
-                operators.forEach((operator) => {
-                    operator.addEventListener('click', () => {
-                        removeNumClicks();
-                    });
-                });
-            }
-        });
-    });
-}
-
-function removeNumClicks() {
-    numbers.forEach((number) => {
-        number.removeEventListener('click', () => {
-            if (screenDisplay.textContent == 'ERROR') {
-                screenDisplay.textContent = number.textContent;
-            } else {
-                screenDisplay.append(number.textContent);
-            }
-        });
-    });    
-}
+// + / -   S I G N   C L I C K E D ?
+const absButton = document.getElementById('absolute');
+absButton.addEventListener('click', () => {
+    if (screen.textContent == '' || screen.textContent == 'ERROR') {
+        screen.textContent = 'ERROR';
+    } else if (Number(screen.textContent) > 0) {
+        screen.textContent = '-' + screen.textContent;
+        numString = screen.textContent;
+    } else if(screen.textContent == '0') {
+        screen.textContent = screen.textContent;
+    }else {
+        screen.textContent = `${Math.abs(Number(screen.textContent))}`
+        numString = screen.textContent;
+    }
+});
