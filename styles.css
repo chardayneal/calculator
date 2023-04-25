@@ -1,41 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
 * {
     padding: 0;
     margin: 0;
-    font-size: 18px;
+    font-size: 20px;
+    font-family: 'Poppins', sans-serif;
+    color: white;
 }
 
 body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 50px;
+    margin-top: 100px;
     gap: 30px;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-h1 {
-    font-size: 50px;
+    background-color: rgb(117, 58, 67);
 }
 
 #outline {
     width: 360px;
-    height: 525px;
-    border: 5px solid black;
-    border-radius: 5px;
+    height: 500px;
+    box-shadow: 0 10px 30px rgba(37, 37, 37, 0.95);
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
     justify-content: end;
     align-items: center;
-    gap: 15px;
-    background-color: rgb(114, 114, 114);
+    background-color: rgb(145, 80, 80);
+    padding-bottom: 10px;
 }
 
 #display {
     width: 340px;
     height: 80px;
-    border: 3px solid black;
+    box-shadow: inset 0 0 10px rgb(37, 37, 37);
     border-radius: 8px;
-    background-color: rgb(237, 234, 234);
+    background-color: rgba(60, 60, 60, 0.831);
     display: flex;
     flex-direction: column;
     align-items: end;
@@ -43,25 +43,20 @@ h1 {
 
 #equation {
     font-size: 16px;
+    padding: 5px 15px;
 }
 
 #screen {
-    font-size: 32px;
-    padding: 20px;
+    font-size: 28px;
+    padding: 5px 10px;
 }
 
 #clear {
     grid-area: clear;
-    width: 75px;
-    height: 75px;
-    background-color: green;
 }
 
 #delete {
     grid-area: delete;
-    width: 75px;
-    height: 75px;
-    background-color: red;
 }
 
 #absolute {
@@ -132,29 +127,6 @@ h1 {
     grid-area: equals;
     width: 160px;
     height: 75px;
-    background-color: orange;
-    color: white;
-}
-
-.numbers {
-    width: 75px;
-    height: 75px;
-    background-color: rgb(58, 58, 58);
-    color: white;
-}
-
-#add, #subtract, #multiply, #divide {
-    width: 75px;
-    height: 75px;
-    background-color: orange;
-    color: white;
-}
-
-#decimal, #absolute {
-    width: 75px;
-    height: 75px;
-    background-color: rgb(175, 182, 188);
-    color: black;
 }
 
 #buttons {
@@ -174,6 +146,39 @@ h1 {
 }
 
 button {
-    border-radius: 100px;
-    border: 1px solid black;
+    width: 75px;
+    height: 75px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    background-color: rgb(145, 82, 80);
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.75);
+    transition: 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.numbers:hover, #absolute:hover, #decimal:hover {
+    background-color: rgb(187, 96, 110);
+    transform: scale(.91);
+    font-size: .8rem;
+}
+
+.operators:hover {
+    transform: scale(.91);
+    font-size: 1.3rem;
+}
+
+
+
+#clear:hover, #delete:hover {
+    background-color: rgb(122, 187, 96);
+}
+
+#equals:hover {
+    background-color: rgb(96, 181, 187);
+}
+
+footer {
+    margin-top: 75px;
+    display: flex;
+    align-items: end;
 }

@@ -38,7 +38,7 @@ opButtons.forEach((operator) => {
     operator.addEventListener('click', () => {
         // check if any operators are currently selected
         opButtons.forEach(button => {
-            if (button.style.backgroundColor == 'rgb(191, 124, 0)') {
+            if (button.style.backgroundColor == 'rgb(117, 58, 67)') {
                 shortenNumber();
                 secondNum = Number(screen.textContent);
                 console.log(secondNum);
@@ -47,7 +47,7 @@ opButtons.forEach((operator) => {
                 firstNum = Number(screen.textContent);
                 console.log(firstNum);
                 equation.textContent = `${firstNum} ${operator.textContent} `;
-                button.style.backgroundColor = 'orange';
+                button.style.backgroundColor = 'rgb(145, 82, 80)';
             }
         });
         if (equation.textContent == '') {
@@ -56,10 +56,10 @@ opButtons.forEach((operator) => {
             operatorSelected = operator.id;
             console.log(firstNum);
             console.log(operatorSelected);
-            operator.style.backgroundColor = 'rgb(191, 124, 0)';
+            operator.style.backgroundColor = 'rgb(117, 58, 67)';
             equation.append(`${screen.textContent} ${operator.textContent} `);
         } 
-        operator.style.backgroundColor = 'rgb(191, 124, 0)';
+        operator.style.backgroundColor = 'rgb(117, 58, 67)';
         operatorSelected = operator.id; 
         screen.textContent = '';
         numString = '';
@@ -70,8 +70,8 @@ opButtons.forEach((operator) => {
 const equals = document.getElementById('equals');
 equals.addEventListener('click', () => {
     opButtons.forEach((button) => {
-        if (button.style.backgroundColor = 'rgb(191, 124, 0)') {
-            button.style.backgroundColor = 'orange';
+        if (button.style.backgroundColor = 'rgb(117, 58, 67)') {
+            button.style.backgroundColor = 'rgb(145, 82, 80)';
         }
     })
     shortenNumber();
@@ -116,7 +116,7 @@ clearButton.addEventListener('click', () => {
     if (screen.textContent == '') {
         equation.textContent = '';
         opButtons.forEach((button) => {
-            button.style.backgroundColor = 'orange';
+            button.style.backgroundColor = 'rgb(145, 82, 80)';
         });
         numString = '';
     } else { 
