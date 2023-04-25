@@ -45,23 +45,28 @@ opButtons.forEach((operator) => {
         // check if any operators are currently selected
         opButtons.forEach(button => {
             if (button.style.backgroundColor == 'rgb(191, 124, 0)') {
+                shortenNumber();
                 secondNum = Number(screen.textContent);
                 console.log(secondNum);
                 operate(operatorSelected, firstNum, secondNum);
+                shortenNumber();
                 firstNum = Number(screen.textContent);
                 console.log(firstNum);
                 equation.textContent = `${firstNum} ${operator.textContent} `;
                 button.style.backgroundColor = 'orange';
+                screen.textContent = '';
                 numString = '';
             }
         });
         if (equation.textContent == '') {
+            shortenNumber();
             firstNum = Number(screen.textContent);
             operatorSelected = operator.id;
             console.log(firstNum);
             console.log(operatorSelected);
             operator.style.backgroundColor = 'rgb(191, 124, 0)';
             equation.append(`${firstNum} ${operator.textContent} `);
+            screen.textContent = '';
             numString = '';
         } 
         operator.style.backgroundColor = 'rgb(191, 124, 0)';
@@ -110,3 +115,41 @@ delButton.addEventListener('click', () => {
         numString = screen.textContent;
     }
 });
+
+// C L E A R   B U T T O N   C L I C K E D ?
+const clearButton = document.getElementById('clear');
+clearButton.addEventListener('click', () => {
+    if (screen.textContent == '') {
+        equation.textContent = '';
+        opButtons.forEach((button) => {
+            button.style.backgroundColor = 'orange';
+        });
+        numString = '';
+    } else { 
+        screen.textContent = '';
+        numString = screen.textContent;
+    }
+});
+
+
+// D E C I M A L   P R E S S E D ?
+const decimal = document.getElementById('decimal');
+decimal.addEventListener('click', () => {
+    if (!screen.textContent.includes('.')) {
+        screen.textContent += '.';
+        numString += '.';
+    }
+});
+
+// C O N V E R T   L O N G   N U M B E R
+let maxNumber = 999999999999;
+let minNumber = -999999999999
+function shortenNumber() {
+    if (Number(screen.textContent) > maxNumber || Number(screen.textContent) < minNumber) {
+       screen.textContent =  `${Number(screen.textContent).toExponential(12)}`;
+       numString = screen.textContent;
+    } else if (screen.textContent.includes('.') && screen.textContent.length > 13) {
+        screen.textContent =  `${Number(screen.textContent).toExponential(12)}`;
+        numString = screen.textContent;
+    }
+}
