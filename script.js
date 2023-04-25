@@ -98,3 +98,15 @@ absButton.addEventListener('click', () => {
         numString = screen.textContent;
     }
 });
+
+// D E L E T E   B U T T O N   C L I C K E D ?
+const delButton = document.getElementById('delete');
+delButton.addEventListener('click', () => {
+    if (!screen.textContent) {
+        screen.textContent = '0';
+        numString = screen.textContent;
+    } else {
+        screen.textContent = screen.textContent.slice(0,-1);
+        numString = screen.textContent;
+    }
+});
