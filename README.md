@@ -1,6 +1,8 @@
 # Calculator
 
-
+<kbd><img width="150" src="./calculator2.png"></kbd>
+<kbd><img width="150" src="./calculator1.png"></kbd>
+</br>
 A website display of a calculator.
 
 ## Description
