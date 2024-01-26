@@ -18,17 +18,17 @@ If the user selects the clear button, the entire equation and number value (if d
 
 ## Getting Started
 
-- Make sure you have the Xcode version 14.0 or above installed on your computer
+- Make sure you have the proper VSCode version installed on your computer
 
-- Download the OrderApp project files from the repository
+- Download the Calculator project files from the repository
 
-- Open the project files in Xcode
+- Open the project files in VSCode
 
 - Review code and make sure you understand what it does
 
 - Run active scheme
 
-You should see the application run on simulated device or hardware device of your choosing. Navigating between controllers should be fairly easy. If you have any issues or need help, feel free to contact me for assistance.
+You should see the application run on web server of your choosing. If you have any issues or need help, feel free to contact me for assistance.
 
 
 
